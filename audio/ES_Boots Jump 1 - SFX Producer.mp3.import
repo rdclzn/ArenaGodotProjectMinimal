@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc0h3qiw40a0a"
+path="res://.godot/imported/ES_Boots Jump 1 - SFX Producer.mp3-3650cbcb5eb29b87ae2d5648bb13cb0c.mp3str"
+
+[deps]
+
+source_file="res://audio/ES_Boots Jump 1 - SFX Producer.mp3"
+dest_files=["res://.godot/imported/ES_Boots Jump 1 - SFX Producer.mp3-3650cbcb5eb29b87ae2d5648bb13cb0c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

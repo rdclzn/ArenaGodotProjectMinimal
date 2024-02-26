@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8lt15ml51p1m"
+path="res://.godot/imported/ES_Bullet Impact Cement - SFX Producer.mp3-f5d92f62c1c7675da8269de8a5afbafd.mp3str"
+
+[deps]
+
+source_file="res://audio/ES_Bullet Impact Cement - SFX Producer.mp3"
+dest_files=["res://.godot/imported/ES_Bullet Impact Cement - SFX Producer.mp3-f5d92f62c1c7675da8269de8a5afbafd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8dhtoqa1ni7c"]
+
+[ext_resource type="Script" path="res://prefabs/particles_hit_metal.gd" id="1_m8ser"]
+[ext_resource type="Texture2D" uid="uid://lhciomoakpac" path="res://textures/particles/trace_07.png" id="1_qpt4i"]
+[ext_resource type="Texture2D" uid="uid://nlptrk4qvjy4" path="res://textures/particles/smoke_04.png" id="2_8q8dl"]
+[ext_resource type="AudioStream" uid="uid://b2hcf65vvv3tw" path="res://audio/ES_Bullet Impact Metal 4 - SFX Producer.mp3" id="3_smeku"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evd54"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 90.0
+gravity = Vector3(0, -7.33, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksxqb"]
+transparency = 1
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(1, 0.811765, 0.207843, 1)
+albedo_texture = ExtResource("1_qpt4i")
+emission_enabled = true
+emission = Color(1, 0.858824, 0.462745, 1)
+uv1_scale = Vector3(0.5, 1, 0.5)
+uv1_offset = Vector3(0.05, 0, -0.025)
+use_particle_trails = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wbvov"]
+material = SubResource("StandardMaterial3D_ksxqb")
+radius = 0.05
+height = 0.2
+radial_segments = 5
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qone3"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0.980392, 0.933333, 1)
+albedo_texture = ExtResource("2_8q8dl")
+emission_enabled = true
+emission = Color(1, 0.811765, 0.207843, 1)
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_offset = Vector3(0.2, 0.4, 0)
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_pt35p"]
+material = SubResource("StandardMaterial3D_qone3")
+custom_aabb = AABB(0, -0.2, 0, 0, 0, 0)
+radius = 0.01
+radial_steps = 5
+sections = 2
+section_length = 0.15
+section_rings = 2
+
+[sub_resource type="Gradient" id="Gradient_0wr56"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oxlkr"]
+gradient = SubResource("Gradient_0wr56")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cmoyp"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 90.0
+flatness = 0.23
+initial_velocity_min = 10.0
+initial_velocity_max = 18.0
+angular_velocity_min = 20.0
+angular_velocity_max = 40.0
+radial_accel_min = 11.02
+radial_accel_max = 22.04
+tangential_accel_min = 3.15
+tangential_accel_max = 14.17
+damping_min = 24.0
+damping_max = 32.0
+angle_max = 430.9
+scale_min = 1.2
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_oxlkr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csloj"]
+transparency = 1
+cull_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.843137, 0.843137, 0.843137, 1)
+albedo_texture = ExtResource("2_8q8dl")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_offset = Vector3(0.2, 0.2, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7sbnf"]
+material = SubResource("StandardMaterial3D_csloj")
+radius = 0.1
+height = 0.2
+radial_segments = 12
+rings = 5
+
+[node name="ParticlesHitMetal" type="Node3D"]
+script = ExtResource("1_m8ser")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+randomness = 0.1
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_evd54")
+draw_passes = 2
+draw_pass_1 = SubResource("CapsuleMesh_wbvov")
+draw_pass_2 = SubResource("TubeTrailMesh_pt35p")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+trail_lifetime = 0.15
+process_material = SubResource("ParticleProcessMaterial_cmoyp")
+draw_pass_1 = SubResource("SphereMesh_7sbnf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_smeku")
+volume_db = -25.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

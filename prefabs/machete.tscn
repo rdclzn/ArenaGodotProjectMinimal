@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://de2tvcovwfuyn"]
+
+[ext_resource type="PackedScene" uid="uid://dxh6jocxeft18" path="res://models/machete.glb" id="1_qjel1"]
+[ext_resource type="Texture2D" uid="uid://cuqqcgqcr5j1u" path="res://models/textures/wood_baseColor.jpeg" id="2_71ff7"]
+[ext_resource type="Texture2D" uid="uid://ipqdfd6pyjou" path="res://models/pelourinho3/pelourinho3_WhiteStuccoWall02_1K_Roughness.png" id="3_ghreo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfmm5"]
+albedo_texture = ExtResource("2_71ff7")
+roughness_texture = ExtResource("3_ghreo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_355f4"]
+albedo_color = Color(0.803922, 0.803922, 0.803922, 1)
+metallic = 1.0
+roughness = 0.4
+
+[node name="machete" instance=ExtResource("1_qjel1")]
+
+[node name="machete2" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xfmm5")
+surface_material_override/1 = SubResource("StandardMaterial3D_355f4")

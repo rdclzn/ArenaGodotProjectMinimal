@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cirgsugtm1yw5"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_7e70q"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v1p2h"]
+radius = 0.004
+height = 1.0
+radial_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5li5"]
+albedo_color = Color(1, 0.764706, 0.294118, 1)
+emission_enabled = true
+emission = Color(0.568627, 1, 0.313726, 1)
+emission_energy_multiplier = 8.0
+
+[node name="RifleBullet" type="Node3D"]
+script = ExtResource("1_7e70q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_v1p2h")
+surface_material_override/0 = SubResource("StandardMaterial3D_l5li5")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+target_position = Vector3(0, 0, -5.5)
+collision_mask = 11
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

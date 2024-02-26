@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://do2lsrmkb2dyr"]
+
+[ext_resource type="Texture2D" uid="uid://dfwepdv7nkomc" path="res://textures/particles/blood_speck_semi_transparent.png" id="1_0p7s0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h58vn"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_0p7s0")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufljc"]
+lifetime_randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 0.25
+spread = 25.0
+flatness = 0.45
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 9.0
+initial_velocity_max = 12.0
+angular_velocity_min = 12.0
+angular_velocity_max = 32.0
+linear_accel_min = -2.0
+linear_accel_max = 2.0
+damping_min = 24.0
+damping_max = 28.0
+angle_max = 45.3
+scale_min = 0.0
+scale_max = 0.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_nkxjh"]
+size = Vector2(0.35, 0.35)
+
+[node name="BloodParticles" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_h58vn")
+emitting = false
+amount = 60
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+trail_lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_ufljc")
+draw_pass_1 = SubResource("QuadMesh_nkxjh")

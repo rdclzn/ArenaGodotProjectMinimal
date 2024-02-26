@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3smxcpwm1q1f"
+path="res://.godot/imported/ES_Bullet Human Hit 1 - SFX Producer.mp3-6b4693e00884e4d3ed64dd5b68ae1381.mp3str"
+
+[deps]
+
+source_file="res://audio/ES_Bullet Human Hit 1 - SFX Producer.mp3"
+dest_files=["res://.godot/imported/ES_Bullet Human Hit 1 - SFX Producer.mp3-6b4693e00884e4d3ed64dd5b68ae1381.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

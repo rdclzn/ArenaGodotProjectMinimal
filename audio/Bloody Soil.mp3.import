@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnmwigsd4kyk5"
+path="res://.godot/imported/Bloody Soil.mp3-bb8b549b3d5da148b07b209968c67d29.mp3str"
+
+[deps]
+
+source_file="res://audio/Bloody Soil.mp3"
+dest_files=["res://.godot/imported/Bloody Soil.mp3-bb8b549b3d5da148b07b209968c67d29.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

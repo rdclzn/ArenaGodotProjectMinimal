@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://carx0ip0f2dxq"]
+
+[ext_resource type="PackedScene" uid="uid://bk15b1ftyuugy" path="res://models/Fps Rig AKM.glb" id="1_t3c8u"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vqpbk"]
+animation = &"Armature|Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ukh1"]
+animation = &"Armature|Shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1th14"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7843"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u058g"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mclrf"]
+states/Armature|Idle/node = SubResource("AnimationNodeAnimation_vqpbk")
+states/Armature|Idle/position = Vector2(480, 4.66666)
+states/Armature|Shoot/node = SubResource("AnimationNodeAnimation_4ukh1")
+states/Armature|Shoot/position = Vector2(478.667, 98.8889)
+states/Start/position = Vector2(213.333, 98.6667)
+transitions = ["Start", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_1th14"), "Armature|Idle", "Armature|Shoot", SubResource("AnimationNodeStateMachineTransition_t7843"), "Armature|Shoot", "Armature|Idle", SubResource("AnimationNodeStateMachineTransition_u058g")]
+graph_offset = Vector2(49, -47)
+
+[node name="Fps Rig AKM" instance=ExtResource("1_t3c8u")]
+
+[node name="Armature" parent="RootNode" index="0"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)
+
+[node name="Skeleton3D" parent="RootNode/Armature" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+bones/0/rotation = Quaternion(-0.575556, -0.32302, -0.478013, 0.579567)
+bones/1/rotation = Quaternion(-0.196825, -0.0288596, -0.354581, 0.913619)
+bones/4/rotation = Quaternion(0.527107, 0.129258, -0.168523, 0.822831)
+bones/10/rotation = Quaternion(-0.61624, -0.0131716, -0.450938, 0.645546)
+bones/11/rotation = Quaternion(0.0112364, -0.186453, 0.17905, 0.965945)
+bones/12/rotation = Quaternion(0.333287, 0.709198, -0.599165, -0.16419)
+bones/13/rotation = Quaternion(-0.611988, -0.0377176, 0.436604, 0.65835)
+bones/14/rotation = Quaternion(0.163644, 0.308365, 0.0705814, 0.934425)
+bones/24/position = Vector3(-0.00314438, -0.00504834, 0.00417885)
+bones/25/rotation = Quaternion(0.678428, -0.382272, -0.546584, -0.307978)
+
+[node name="AnimationTreeForAK" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_mclrf")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/shoot = false
+
+[node name="GunBarrel" type="RayCast3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0947749, -0.102968, -0.763068)
+target_position = Vector3(0, 0, -1)
+collision_mask = 10
